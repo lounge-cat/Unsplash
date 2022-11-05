@@ -73,9 +73,8 @@ extension DefaultViewController: UICollectionViewDataSource {
 extension DefaultViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let showViewModel = viewModel?.getShowViewModel(indexPath: indexPath)
-        else { return }
-        navigationController?.pushViewController(ShowViewController(viewModel: showViewModel), animated: true)
+        guard let showPhotoViewModel = viewModel?.getShowPhotoViewModel(indexPath: indexPath) else { return }
+        navigationController?.pushViewController(ShowPhotoViewController(viewModel: showPhotoViewModel), animated: true)
     }
 }
 
@@ -87,7 +86,7 @@ extension DefaultViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        self.viewModel?.getItems(searchText: searchBar.searchTextField.text) {
+        self.viewModel?.getItemsFromSearch(searchText: searchBar.searchTextField.text) {
             self.collectionView.reloadData()
         }
     }
