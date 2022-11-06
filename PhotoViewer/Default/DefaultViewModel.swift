@@ -19,9 +19,10 @@ protocol DefaultViewModelType: AnyObject {
 }
 
 class DefaultViewModel {
+
+    private let networkService = NetworkService()
     
     var items: [MyType] = []
-    let requestHandler = RequestHandler()
     
     private func getCollectionViewItemSize() -> CGSize {
         let screenWidth = UIScreen.main.bounds.width
@@ -47,7 +48,7 @@ extension DefaultViewModel: DefaultViewModelType {
     }
     
     func getItemsFromSearch(searchText: String, completion: @escaping () -> ()) {
-        requestHandler.networkResultsFromSearch(searchText: searchText) { items in
+        networkService.networkResultsFromSearch(searchText: searchText) { items in
             guard let items = items else { return }
             self.items = items
             
@@ -56,7 +57,7 @@ extension DefaultViewModel: DefaultViewModelType {
     }
     
     func getRandomItems(completion: @escaping () -> ()) {
-        requestHandler.randomNetworkResults() { items in
+        networkService.randomNetworkResults() { items in
             guard let items = items else { return }
             self.items = items
             
@@ -66,7 +67,7 @@ extension DefaultViewModel: DefaultViewModelType {
     
     func getCellViewModel(indexPath: IndexPath) -> DefaultCellViewModelType? {
         guard let string = items[indexPath.row].urls.thumb,
-              let data = requestHandler.getImageData(string: string)
+              let data = networkService.imageData(urlString: string)
         else { return nil }
 
         let image = UIImage(data: data)

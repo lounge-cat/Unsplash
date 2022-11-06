@@ -93,9 +93,9 @@ extension FavouritPhotosViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let showViewModel = viewModel?.getShowViewModel(index: indexPath.row) else { return }
+        guard let showPhotoViewModel = viewModel?.getShowViewModel(indexPath: indexPath) else { return }
         
-        navigationController?.pushViewController(ShowViewController(viewModel: showViewModel), animated: true)
+        navigationController?.pushViewController(ShowPhotoViewController(viewModel: showPhotoViewModel), animated: true)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

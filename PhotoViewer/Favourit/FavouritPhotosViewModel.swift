@@ -6,32 +6,58 @@
 //
 
 import Foundation
+import UIKit
 
 protocol FavouritPhotosViewModelType: AnyObject {
     var items: [MyType] { get }
     func numberOfRowsInSection() -> Int
     func updateItemsArray()
-    func getCellViewModel(indexPath: IndexPath) -> FavouritsCellViewModelType?
+    func getCellViewModel(indexPath: IndexPath) -> FavouritPhotoCellViewModelType?
+    func getShowViewModel(indexPath: IndexPath) -> ShowPhotoViewModelType?
+    func deleteItem(indexPath: IndexPath)
 }
 
 class FavouritPhotosViewModel {
     
+    let photoService = PhotoService()
+    let networkService = NetworkService()
+    
     var items: [MyType] = []
+    
+    private func getText(indexPath: IndexPath) -> String? {
+        items[indexPath.row].user.name
+    }
+    
+    private func getImage(indexPath: IndexPath) -> UIImage? {
+        guard let urlString = items[indexPath.row].urls.thumb,
+              let data = networkService.getImageData(urlString: urlString)
+        else { return nil }
+        return UIImage(data: data)
+    }
 }
 
 extension FavouritPhotosViewModel: FavouritPhotosViewModelType {
-    
+
     func numberOfRowsInSection() -> Int {
         items.count
     }
     
     func updateItemsArray() {
-//        items = dataManager.getFav()
+        items = photoService.getFavouritPhotos()
     }
     
-    func getCellViewModel(indexPath: IndexPath) -> FavouritsCellViewModelType? {
+    func getShowViewModel(indexPath: IndexPath) -> ShowPhotoViewModelType? {
+        ShowPhotoViewModel(item: items[indexPath.row])
+    }
+    
+    func getCellViewModel(indexPath: IndexPath) -> FavouritPhotoCellViewModelType? {
         let image = getImage(indexPath: indexPath)
         let text = getText(indexPath: indexPath)
-        return FavouritsCellViewModel(image: image, text: text)
+        return FavouritPhotoCellViewModel()
+    }
+    
+    func deleteItem(indexPath: IndexPath) {
+        photoService.deleteFavouritPhoto(indexPath: indexPath)
+        updateItemsArray()
     }
 }

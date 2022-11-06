@@ -28,6 +28,8 @@
 		84EE820C2917238000B43308 /* FavouritPhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EE820B2917238000B43308 /* FavouritPhotosViewModel.swift */; };
 		84EE820E2917264A00B43308 /* FavouritPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EE820D2917264A00B43308 /* FavouritPhotoCell.swift */; };
 		84EE82102917282600B43308 /* FavouritPhotoCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EE820F2917282600B43308 /* FavouritPhotoCellViewModel.swift */; };
+		84EE82132917552200B43308 /* RequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EE82122917552200B43308 /* RequestService.swift */; };
+		84EE82152917587500B43308 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EE82142917587500B43308 /* Parser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +56,8 @@
 		84EE820B2917238000B43308 /* FavouritPhotosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritPhotosViewModel.swift; sourceTree = "<group>"; };
 		84EE820D2917264A00B43308 /* FavouritPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritPhotoCell.swift; sourceTree = "<group>"; };
 		84EE820F2917282600B43308 /* FavouritPhotoCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritPhotoCellViewModel.swift; sourceTree = "<group>"; };
+		84EE82122917552200B43308 /* RequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestService.swift; sourceTree = "<group>"; };
+		84EE82142917587500B43308 /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,10 +95,9 @@
 				84EE81FA2917025D00B43308 /* Default */,
 				84EE81FF29171A3600B43308 /* Show */,
 				84EE8206291722FD00B43308 /* Favourit */,
-				846517932915EAF3004DF750 /* TabBarController.swift */,
-				846517912915EAE7004DF750 /* TabBarViewModel.swift */,
-				84EE81F62916FA8F00B43308 /* MyType.swift */,
+				84EE8211291732CB00B43308 /* TabBar */,
 				84EE82032917226F00B43308 /* Service */,
+				84EE81F62916FA8F00B43308 /* MyType.swift */,
 				846517832915E9EB004DF750 /* Main.storyboard */,
 				846517862915E9EE004DF750 /* Assets.xcassets */,
 				846517882915E9EE004DF750 /* LaunchScreen.storyboard */,
@@ -127,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				84EE81F82916FD8F00B43308 /* RequestHandler.swift */,
+				84EE82122917552200B43308 /* RequestService.swift */,
 				84EE820029171B7300B43308 /* NetworkService.swift */,
 			);
 			path = Network;
@@ -137,6 +141,7 @@
 			children = (
 				84EE820229171B8900B43308 /* Network */,
 				84EE8204291722C200B43308 /* PhotoService.swift */,
+				84EE82142917587500B43308 /* Parser.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -150,6 +155,15 @@
 				84EE820F2917282600B43308 /* FavouritPhotoCellViewModel.swift */,
 			);
 			path = Favourit;
+			sourceTree = "<group>";
+		};
+		84EE8211291732CB00B43308 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				846517932915EAF3004DF750 /* TabBarController.swift */,
+				846517912915EAE7004DF750 /* TabBarViewModel.swift */,
+			);
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,6 +239,7 @@
 			files = (
 				846517962915EBE6004DF750 /* DefaultViewController.swift in Sources */,
 				84EE820C2917238000B43308 /* FavouritPhotosViewModel.swift in Sources */,
+				84EE82132917552200B43308 /* RequestService.swift in Sources */,
 				84EE820E2917264A00B43308 /* FavouritPhotoCell.swift in Sources */,
 				84EE81FE29170F9800B43308 /* ShowPhotoViewController.swift in Sources */,
 				84EE82102917282600B43308 /* FavouritPhotoCellViewModel.swift in Sources */,
@@ -234,6 +249,7 @@
 				84EE8205291722C200B43308 /* PhotoService.swift in Sources */,
 				84EE81F92916FD8F00B43308 /* RequestHandler.swift in Sources */,
 				84EE820129171B7300B43308 /* NetworkService.swift in Sources */,
+				84EE82152917587500B43308 /* Parser.swift in Sources */,
 				846517822915E9EB004DF750 /* FavouritPhotosViewController.swift in Sources */,
 				84EE81F52916F86200B43308 /* DefaultCellViewModel.swift in Sources */,
 				8465177E2915E9EA004DF750 /* AppDelegate.swift in Sources */,

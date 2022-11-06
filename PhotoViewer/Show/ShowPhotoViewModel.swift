@@ -29,7 +29,7 @@ class ShowPhotoViewModel {
     
     private func getImage() -> UIImage? {
         guard let string = self.item.urls.regular,
-              let data = networkService.getImageData(string: string)
+              let data = networkService.getImageData(urlString: string)
         else { return nil }
         return UIImage(data: data)
     }
@@ -76,8 +76,8 @@ extension ShowPhotoViewModel: ShowPhotoViewModelType {
         stackView.axis = .vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
-        getItemParameters().compactMap { parameter in createLabel(text: parameter) }
-            .forEach { parameter in stackView.addArrangedSubview(parameter) }
+        getItemParameters().compactMap { createLabel(text: $0) }
+            .forEach { stackView.addArrangedSubview($0) }
     }
     
     func setupButton(button: UIButton) {
