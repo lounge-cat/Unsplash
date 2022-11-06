@@ -30,7 +30,7 @@ class FavouritPhotosViewModel {
     
     private func getImage(indexPath: IndexPath) -> UIImage? {
         guard let urlString = items[indexPath.row].urls.thumb,
-              let data = networkService.getImageData(urlString: urlString)
+              let data = networkService.imageData(urlString: urlString)
         else { return nil }
         return UIImage(data: data)
     }
@@ -43,7 +43,7 @@ extension FavouritPhotosViewModel: FavouritPhotosViewModelType {
     }
     
     func updateItemsArray() {
-        items = photoService.getFavouritPhotos()
+//        items = photoService.getFavouritPhotos()
     }
     
     func getShowViewModel(indexPath: IndexPath) -> ShowPhotoViewModelType? {
@@ -53,11 +53,11 @@ extension FavouritPhotosViewModel: FavouritPhotosViewModelType {
     func getCellViewModel(indexPath: IndexPath) -> FavouritPhotoCellViewModelType? {
         let image = getImage(indexPath: indexPath)
         let text = getText(indexPath: indexPath)
-        return FavouritPhotoCellViewModel()
+        return FavouritPhotoCellViewModel(image: image, text: text)
     }
     
     func deleteItem(indexPath: IndexPath) {
-        photoService.deleteFavouritPhoto(indexPath: indexPath)
+//        photoService.deleteFavouritPhoto(indexPath: indexPath)
         updateItemsArray()
     }
 }

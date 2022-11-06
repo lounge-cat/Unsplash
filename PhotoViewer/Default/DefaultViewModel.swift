@@ -14,7 +14,7 @@ protocol DefaultViewModelType: AnyObject {
     func getNumberOfItems() -> Int
     func getCellViewModel(indexPath: IndexPath) -> DefaultCellViewModelType?
     func getShowPhotoViewModel(indexPath: IndexPath) -> ShowPhotoViewModelType?
-    func getItemsFromSearch(searchText: String, completion: @escaping () -> ())
+    func getItemsFromSearch(searchText: String?, completion: @escaping () -> ())
     func getRandomItems(completion: @escaping () -> ())
 }
 
@@ -47,7 +47,8 @@ extension DefaultViewModel: DefaultViewModelType {
         return items.count
     }
     
-    func getItemsFromSearch(searchText: String, completion: @escaping () -> ()) {
+    func getItemsFromSearch(searchText: String?, completion: @escaping () -> ()) {
+        guard let searchText = searchText else { return }
         networkService.networkResultsFromSearch(searchText: searchText) { items in
             guard let items = items else { return }
             self.items = items

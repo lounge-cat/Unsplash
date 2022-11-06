@@ -34,6 +34,10 @@ class DefaultViewController: UIViewController {
         setupUI()
         setupSearchController()
         setupCollectionView()
+        
+        viewModel?.getRandomItems() {
+            self.collectionView.reloadData()
+        }
     }
     
     private func setupUI() {

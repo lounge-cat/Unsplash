@@ -29,7 +29,7 @@ class ShowPhotoViewModel {
     
     private func getImage() -> UIImage? {
         guard let string = self.item.urls.regular,
-              let data = networkService.getImageData(urlString: string)
+              let data = networkService.imageData(urlString: string)
         else { return nil }
         return UIImage(data: data)
     }
@@ -51,11 +51,11 @@ class ShowPhotoViewModel {
     }
     
     @objc private func buttonAction() {
-        if let itemIndex = dataManager.findObject(item: item) {
-            dataManager.deletePhoto(index: itemIndex)
-        } else {
-            dataManager.savePhoto(item: item)
-        }
+//        if let itemIndex = dataManager.findObject(item: item) {
+//            dataManager.deletePhoto(index: itemIndex)
+//        } else {
+//            dataManager.savePhoto(item: item)
+//        }
         
         NotificationCenter.default.post(name: Notification.Name(rawValue: "updateTable"), object: nil)
     }
