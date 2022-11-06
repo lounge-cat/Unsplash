@@ -5,7 +5,6 @@
 //  Created by  admin on 4.11.22.
 //
 
-import CoreGraphics
 import UIKit
 
 protocol DefaultViewModelType: AnyObject {
