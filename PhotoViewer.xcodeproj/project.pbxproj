@@ -99,20 +99,36 @@
 		8465177C2915E9EA004DF750 /* PhotoViewer */ = {
 			isa = PBXGroup;
 			children = (
-				8465177D2915E9EA004DF750 /* AppDelegate.swift */,
-				8465177F2915E9EB004DF750 /* SceneDelegate.swift */,
 				84EE81FA2917025D00B43308 /* Default */,
 				84EE81FF29171A3600B43308 /* Show */,
 				84EE8206291722FD00B43308 /* Favourit */,
 				84EE8211291732CB00B43308 /* TabBar */,
 				84EE82032917226F00B43308 /* Service */,
-				84EE81F62916FA8F00B43308 /* Photo.swift */,
-				846517832915E9EB004DF750 /* Main.storyboard */,
-				846517862915E9EE004DF750 /* Assets.xcassets */,
-				846517882915E9EE004DF750 /* LaunchScreen.storyboard */,
+				84B6BDE62919EA17009FBD78 /* Model */,
+				84B6BDE72919EA25009FBD78 /* Supporting Files */,
 				8465178B2915E9EE004DF750 /* Info.plist */,
 			);
 			path = PhotoViewer;
+			sourceTree = "<group>";
+		};
+		84B6BDE62919EA17009FBD78 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				84EE81F62916FA8F00B43308 /* Photo.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		84B6BDE72919EA25009FBD78 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8465177D2915E9EA004DF750 /* AppDelegate.swift */,
+				8465177F2915E9EB004DF750 /* SceneDelegate.swift */,
+				846517832915E9EB004DF750 /* Main.storyboard */,
+				846517862915E9EE004DF750 /* Assets.xcassets */,
+				846517882915E9EE004DF750 /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		84EE81FA2917025D00B43308 /* Default */ = {
@@ -190,7 +206,6 @@
 				14B0CDE24DF3F15FB63E09ED /* Pods-PhotoViewer.debug.xcconfig */,
 				B1CECA0BD81F46010E5B2672 /* Pods-PhotoViewer.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};

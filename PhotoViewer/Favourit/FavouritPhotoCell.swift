@@ -15,8 +15,11 @@ class FavouritPhotoCell: UITableViewCell {
     
     var cellViewModel: FavouritPhotoCellViewModelType? {
         willSet {
-            image.image = newValue?.image
-            label.text = "author: \n\(String(describing: newValue?.text))"
+            guard let newImage = newValue?.image,
+                  let newText = newValue?.text
+            else { return }
+            image.image = newImage
+            label.text = "author: \n\(String(describing: newText))"
         }
     }
     

@@ -45,10 +45,16 @@ class ShowPhotoViewModel {
     }
     
     private func getItemParameters() -> [String] {
-        guard let user = photo.user.name,
-              let location = photo.user.location
-        else { return [] }
-        return [user, location]
+        var parameters: [String] = []
+        
+        if let user = photo.user.name {
+            parameters.append(user)
+        }
+        
+        if let location = photo.user.location {
+            parameters.append(location)
+        }
+        return parameters
     }
     
     @objc private func buttonAction() {
