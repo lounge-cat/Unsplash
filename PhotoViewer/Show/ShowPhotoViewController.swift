@@ -28,7 +28,7 @@ class ShowPhotoViewController: UIViewController {
         super.viewWillLayoutSubviews()
         
         scrollView.frame = view.safeAreaLayoutGuide.layoutFrame
-        imageView.frame = CGRect(origin: .zero, size: viewModel?.getImageViewSize(frame: view.bounds) ?? .zero)
+        imageView.frame = CGRect(origin: .zero, size: viewModel?.getImageViewSize() ?? .zero)
     }
     
     override func viewDidLoad() {
@@ -69,7 +69,7 @@ class ShowPhotoViewController: UIViewController {
     
     private func setupScrollView() {
         view.addSubview(scrollView)
-        scrollView.contentSize = CGSize(width: view.bounds.width, height: view.bounds.height + 100)
+        viewModel?.setupScrollView(scrollView: scrollView)
         scrollView.addSubview(imageView)
         scrollView.addSubview(stackView)
         scrollView.addSubview(button)

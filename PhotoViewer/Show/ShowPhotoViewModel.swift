@@ -12,10 +12,11 @@ private enum Constants {
 }
 
 protocol ShowPhotoViewModelType {
-    func getImageViewSize(frame: CGRect) -> CGSize
+    func getImageViewSize() -> CGSize
     func setupImageView(imageView: UIImageView)
     func setupStackView(stackView: UIStackView)
     func setupButton(button: UIButton)
+    func setupScrollView(scrollView: UIScrollView)
 }
 
 class ShowPhotoViewModel {
@@ -69,9 +70,10 @@ class ShowPhotoViewModel {
 
 extension ShowPhotoViewModel: ShowPhotoViewModelType {
     
-    func getImageViewSize(frame: CGRect) -> CGSize {
+    func getImageViewSize() -> CGSize {
+        let width = UIScreen.main.bounds.width
         let aspect = CGFloat(photo.height) / CGFloat(photo.width)
-        return CGSize(width: frame.width, height: frame.width * aspect)
+        return CGSize(width: width, height: width * aspect)
     }
     
     func setupImageView(imageView: UIImageView) {
@@ -95,5 +97,11 @@ extension ShowPhotoViewModel: ShowPhotoViewModelType {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.tintColor = .white
         button.backgroundColor = .systemFill
+    }
+    
+    func setupScrollView(scrollView: UIScrollView) {
+        let photoHeight = getImageViewSize().height
+        let height = photoHeight + 80
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: height)
     }
 }
