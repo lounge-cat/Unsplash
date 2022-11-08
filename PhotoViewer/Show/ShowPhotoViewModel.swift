@@ -20,15 +20,16 @@ protocol ShowPhotoViewModelType {
 
 class ShowPhotoViewModel {
     
-    var item: MyType
+    var photo: Photo
     let networkService = NetworkService()
+    let photoService = PhotoService()
     
-    init(item: MyType) {
-        self.item = item
+    init(photo: Photo) {
+        self.photo = photo
     }
     
     private func getImage() -> UIImage? {
-        guard let string = self.item.urls.regular,
+        guard let string = self.photo.urls.regular,
               let data = networkService.imageData(urlString: string)
         else { return nil }
         return UIImage(data: data)
@@ -44,19 +45,18 @@ class ShowPhotoViewModel {
     }
     
     private func getItemParameters() -> [String] {
-        guard let user = item.user.name,
-              let location = item.user.location
+        guard let user = photo.user.name,
+              let location = photo.user.location
         else { return [] }
         return [user, location]
     }
     
     @objc private func buttonAction() {
-//        if let itemIndex = dataManager.findObject(item: item) {
-//            dataManager.deletePhoto(index: itemIndex)
-//        } else {
-//            dataManager.savePhoto(item: item)
-//        }
-        
+        if let index = photoService.findPhotoInFavourits(photo: photo) {
+            photoService.deletePhotoFromFavourits(index: index)
+        } else {
+            photoService.savePhotoToFavourits(photo: photo)
+        }
         NotificationCenter.default.post(name: Notification.Name(rawValue: "updateTable"), object: nil)
     }
 }
@@ -64,7 +64,7 @@ class ShowPhotoViewModel {
 extension ShowPhotoViewModel: ShowPhotoViewModelType {
     
     func getImageViewSize(frame: CGRect) -> CGSize {
-        let aspect = CGFloat(item.height) / CGFloat(item.width)
+        let aspect = CGFloat(photo.height) / CGFloat(photo.width)
         return CGSize(width: frame.width, height: frame.width * aspect)
     }
     

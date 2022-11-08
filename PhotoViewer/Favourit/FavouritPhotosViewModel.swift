@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol FavouritPhotosViewModelType: AnyObject {
-    var items: [MyType] { get }
+    var items: [Photo] { get }
     func numberOfRowsInSection() -> Int
     func updateItemsArray()
     func getCellViewModel(indexPath: IndexPath) -> FavouritPhotoCellViewModelType?
@@ -22,7 +22,11 @@ class FavouritPhotosViewModel {
     let photoService = PhotoService()
     let networkService = NetworkService()
     
-    var items: [MyType] = []
+    var items: [Photo] = []
+    
+    init() {
+        items = photoService.favouritPhotos()
+    }
     
     private func getText(indexPath: IndexPath) -> String? {
         items[indexPath.row].user.name
@@ -43,11 +47,11 @@ extension FavouritPhotosViewModel: FavouritPhotosViewModelType {
     }
     
     func updateItemsArray() {
-//        items = photoService.getFavouritPhotos()
+        items = photoService.favouritPhotos()
     }
     
     func getShowViewModel(indexPath: IndexPath) -> ShowPhotoViewModelType? {
-        ShowPhotoViewModel(item: items[indexPath.row])
+        ShowPhotoViewModel(photo: items[indexPath.row])
     }
     
     func getCellViewModel(indexPath: IndexPath) -> FavouritPhotoCellViewModelType? {
@@ -57,7 +61,7 @@ extension FavouritPhotosViewModel: FavouritPhotosViewModelType {
     }
     
     func deleteItem(indexPath: IndexPath) {
-//        photoService.deleteFavouritPhoto(indexPath: indexPath)
+        photoService.deletePhotoFromFavourits(index: indexPath.row)
         updateItemsArray()
     }
 }

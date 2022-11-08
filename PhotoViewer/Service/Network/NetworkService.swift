@@ -12,28 +12,28 @@ class NetworkService {
     private let requestService = RequestService()
     private let parser = Parser()
     
-    func networkResultsFromSearch(searchText: String, completion: @escaping ([MyType]?) -> ()) {
+    func networkResultsFromSearch(searchText: String, completion: @escaping ([Photo]?) -> ()) {
         requestService.networkResultsFromSearch(searchText: searchText) { data, error in
             if let error = error {
                 print("Request error: \(error.localizedDescription)")
                 completion(nil)
             }
             
-            let parse = self.parser.decodeJSON(data: data, type: SearchResults.self)
-            completion(parse?.results)
+            if let parse = self.parser.decodeJSON(data: data, type: SearchResults.self) {
+                completion(parse.results)
+            }
         }
     }
     
-    func randomNetworkResults(completion: @escaping ([MyType]?) -> ()) {
+    func randomNetworkResults(completion: @escaping ([Photo]?) -> ()) {
         requestService.randomNetworkResults { data, error in
             if let error = error {
                 print("Request error: \(error.localizedDescription)")
                 completion(nil)
             }
             
-            if let parse = self.parser.decodeJSON(data: data, type: [MyType].self) {
-                completion(parse)
-            }
+            let parse = self.parser.decodeJSON(data: data, type: [Photo].self)
+            completion(parse)
         }
     }
     

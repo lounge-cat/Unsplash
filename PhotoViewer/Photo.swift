@@ -7,9 +7,9 @@
 
 import Foundation
 
-class MyType: Codable, Equatable {
+class Photo: Codable, Equatable {
     
-    static func == (lhs: MyType, rhs: MyType) -> Bool {
+    static func == (lhs: Photo, rhs: Photo) -> Bool {
         lhs.id == rhs.id
     }
     
@@ -34,5 +34,5 @@ struct Urls: Codable {
 
 struct SearchResults: Decodable {
     let total: Int
-    let results: [MyType]
+    let results: [Photo]
 }

@@ -9,11 +9,14 @@ import Foundation
 
 class Parser {
     
+    func decodeJSON<T: Decodable>(string: String?, type: T.Type) -> T? {
+        guard let string = string else { return nil }
+        return decodeJSON(data: Data(string.utf8), type: type)
+    }
+    
     func decodeJSON<T: Decodable>(data: Data?, type: T.Type) -> T? {
+        guard let data = data else { return nil }
         let decoder = JSONDecoder()
-        guard
-            let data = data
-        else { return nil }
         
         do {
             let objects = try decoder.decode(type.self, from: data)

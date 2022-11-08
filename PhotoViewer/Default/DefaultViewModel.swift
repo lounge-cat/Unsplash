@@ -8,7 +8,7 @@
 import UIKit
 
 protocol DefaultViewModelType: AnyObject {
-    var items: [MyType] { get }
+    var items: [Photo] { get }
     func getCollectionViewLayout() -> UICollectionViewFlowLayout
     func getNumberOfItems() -> Int
     func getCellViewModel(indexPath: IndexPath) -> DefaultCellViewModelType?
@@ -21,7 +21,7 @@ class DefaultViewModel {
 
     private let networkService = NetworkService()
     
-    var items: [MyType] = []
+    var items: [Photo] = []
     
     private func getCollectionViewItemSize() -> CGSize {
         let screenWidth = UIScreen.main.bounds.width
@@ -76,6 +76,6 @@ extension DefaultViewModel: DefaultViewModelType {
     
     func getShowPhotoViewModel(indexPath: IndexPath) -> ShowPhotoViewModelType? {
         let item = items[indexPath.row]
-        return ShowPhotoViewModel(item: item)
+        return ShowPhotoViewModel(photo: item)
     }
 }
