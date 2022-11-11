@@ -22,8 +22,8 @@ protocol ShowPhotoViewModelType {
 class ShowPhotoViewModel {
     
     var photo: Photo
-    let networkService = NetworkService()
-    let photoService = PhotoService()
+    private let networkService = NetworkService()
+    private let photoService = PhotoService()
     
     init(photo: Photo) {
         self.photo = photo
